@@ -54,6 +54,12 @@
             pointer-events: none;
         }
 
+        /* Parallax Bee Logo */
+        .parallax-bee {
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+
         /* Additional Tailwind-like Utility Classes */
         .bg-yellow-100 { background-color: #fef3c7; }
         .bg-yellow-500 { background-color: #f59e0b; }
@@ -93,7 +99,7 @@
 
     <div class="p-8">
         <!-- Logo in corner -->
-        <div class="fixed top-8 -left-20 z-50">
+        <div class="fixed top-8 -left-20 z-50 parallax-bee" id="bee-logo">
             <img 
                 src="https://raw.githubusercontent.com/BeenaeMarvin/Bee/main/1.png" 
                 alt="Bee Logo"
@@ -196,6 +202,23 @@
                 copyIcon.style.color = '';
             }, 2000);
         }
+
+        // Parallax effect for bee logo
+        const beeLogo = document.getElementById('bee-logo');
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            lastScrollY = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const movement = lastScrollY * 0.2; // Adjust this multiplier to control movement speed
+                    beeLogo.style.transform = `translateY(${movement}px)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
     </script>
 </body>
 </html>
