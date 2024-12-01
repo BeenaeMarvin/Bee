@@ -6,6 +6,28 @@
     <title>Ich bin eine Biene</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
+        /* ... existing styles ... */
+        
+        /* Bad Handwriting Style */
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+        
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            transform: rotate(-2deg);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        /* Wobbly animation for extra messiness */
+        @keyframes wobbly {
+            0% { transform: rotate(-2deg); }
+            50% { transform: rotate(1deg); }
+            100% { transform: rotate(-2deg); }
+        }
+        
+        .wobbly-text {
+            animation: wobbly 6s ease-in-out infinite;
+            display: inline-block;
+        }
         /* Honeycomb Animation */
         @keyframes bounce {
             0%, 100% { transform: translateY(-5%); }
@@ -139,15 +161,9 @@
 
         <!-- Hero Section -->
         <div class="max-w-6xl mx-auto text-center mb-16">
-            <!-- Banner Image -->
-            <div class="mb-8 bg-white/30 py-8 rounded-xl backdrop-blur-sm">
-                <img 
-                    src="https://raw.githubusercontent.com/BeenaeMarvin/Bee/main/4.png" 
-                    alt="Bee Banner"
-                    class="w-[600px] h-auto mx-auto"
-                    style="image-rendering: crisp-edges;"
-                />
-            </div>
+            <h1 class="handwritten text-8xl font-bold text-yellow-300 mb-4 text-center wobbly-text">
+                🐝 Ich bin eine Biene 🐝
+            </h1>
             <p class="text-3xl font-bold text-yellow-800 mb-8">
                 Teh <span class="line-through">Retardet</span> Coolest Bee on Teh Block (chain)! 🍯
             </p>
