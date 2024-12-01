@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEE COIN - The Retardest Bee in the World!</title>
+    <title>Ich bin eine Biene</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
+        /* Honeycomb Animation */
         @keyframes bounce {
             0%, 100% { transform: translateY(-5%); }
             50% { transform: translateY(0); }
@@ -21,7 +22,8 @@
             opacity: 0.1;
             transform: rotate(30deg);
         }
-        /* Wood Texture Styles */
+
+        /* Wood Panel Style */
         .wood-panel {
             background-color: #916639;
             background-image: 
@@ -35,47 +37,21 @@
             position: relative;
             overflow: hidden;
         }
-        .wood-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(90deg, 
-                    rgba(255,255,255,0.1) 0%,
-                    rgba(255,255,255,0) 20%,
-                    rgba(255,255,255,0.1) 40%,
-                    rgba(255,255,255,0) 60%,
-                    rgba(255,255,255,0.1) 80%,
-                    rgba(255,255,255,0) 100%
-                );
-            pointer-events: none;
-        }
 
-        /* Parallax Bee Logo */
-        .parallax-bee {
-            transition: transform 0.1s ease-out;
-            will-change: transform;
+        /* Countdown Styles */
+        .countdown-container {
+            background: rgba(145, 102, 57, 0.95);
+            border: 4px solid #654321;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
         }
-
-        /* Additional Tailwind-like Utility Classes */
-        .bg-yellow-100 { background-color: #fef3c7; }
-        .bg-yellow-500 { background-color: #f59e0b; }
-        .bg-yellow-600 { background-color: #d97706; }
-        .text-yellow-500 { color: #f59e0b; }
-        .text-yellow-600 { color: #d97706; }
-        .text-yellow-800 { color: #92400e; }
-        .text-yellow-900 { color: #78350f; }
-        .hover\:bg-yellow-600:hover { background-color: #d97706; }
-        .text-wood { color: #f4debf; }
         
-        /* Transform & Transition Classes */
-        .transition-colors { transition-property: background-color, border-color, color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
-        .transform { transform: translateZ(0); }
-        .hover\:scale-105:hover { transform: scale(1.05); }
-        .transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .countdown-box {
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid #8B4513;
+            min-width: 70px;
+        }
+
+        .text-wood { color: #f4debf; }
 
         /* Chart Container */
         .chart-container {
@@ -83,35 +59,54 @@
             border-radius: 0.5rem;
             overflow: hidden;
         }
-
-        /* Responsive Padding & Margins */
-        @media (max-width: 640px) {
-            .p-8 { padding: 1rem; }
-            .text-6xl { font-size: 2.5rem; }
-            .text-5xl { font-size: 2rem; }
-            .text-3xl { font-size: 1.5rem; }
-        }
     </style>
 </head>
 <body class="bg-yellow-100 min-h-screen">
-    <!-- Background Honeycomb Pattern -->
+    <!-- Background Pattern -->
     <div id="honeycomb-pattern"></div>
 
     <div class="p-8">
-        <!-- Logo in corner -->
-        <div class="absolute top-8 -left-20 z-50" id="bee-logo">
+        <!-- Left Bee -->
+        <div class="absolute top-8 -left-20 z-50">
             <img 
                 src="https://raw.githubusercontent.com/BeenaeMarvin/Bee/main/1.png" 
-                alt="Bee Logo"
+                alt="Left Bee"
             />
         </div>
 
-        <!-- Right side bee -->
+        <!-- Right Bottom Bee -->
         <div class="fixed -bottom-10 -right-20 z-50">
             <img 
                 src="https://raw.githubusercontent.com/BeenaeMarvin/Bee/main/2.png" 
                 alt="Right Bee"
             />
+        </div>
+
+        <!-- Countdown Timer -->
+        <div class="fixed top-8 right-8 z-50">
+            <div class="countdown-container p-4 rounded-xl">
+                <div class="text-center text-wood mb-2 font-bold">
+                    Launch in:
+                </div>
+                <div class="flex gap-2">
+                    <div class="countdown-box p-2 rounded-lg text-center">
+                        <div id="days" class="text-2xl font-bold text-yellow-500">00</div>
+                        <div class="text-xs text-wood">Days</div>
+                    </div>
+                    <div class="countdown-box p-2 rounded-lg text-center">
+                        <div id="hours" class="text-2xl font-bold text-yellow-500">00</div>
+                        <div class="text-xs text-wood">Hours</div>
+                    </div>
+                    <div class="countdown-box p-2 rounded-lg text-center">
+                        <div id="minutes" class="text-2xl font-bold text-yellow-500">00</div>
+                        <div class="text-xs text-wood">Mins</div>
+                    </div>
+                    <div class="countdown-box p-2 rounded-lg text-center">
+                        <div id="seconds" class="text-2xl font-bold text-yellow-500">00</div>
+                        <div class="text-xs text-wood">Secs</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Hero Section -->
@@ -171,13 +166,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Launch Button -->
-        <div class="text-center">
-            <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg transform hover:scale-105 transition-transform">
-                🚀 Launching on pump.fun 🚀
-            </button>
-        </div>
     </div>
 
     <script>
@@ -210,7 +198,39 @@
                 copyIcon.style.color = '';
             }, 2000);
         }
-    </script>
+
+        // Countdown Timer
+        function updateCountdown() {
+            const launchDate = new Date('December 24, 2024 00:00:00').getTime();
+            
+            function update() {
+                const now = new Date().getTime();
+                const distance = launchDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                }
+            }
+
+            update();
+            const countdownInterval = setInterval(update, 1000);
+        }
+
+        updateCountdown();
     </script>
 </body>
 </html>
