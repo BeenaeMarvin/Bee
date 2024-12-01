@@ -212,7 +212,7 @@
             lastScrollY = window.scrollY;
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    const movement = lastScrollY * 0.2; // Adjust this multiplier to control movement speed
+                    const movement = -lastScrollY * 0.1; // Negative value to move up, reduced multiplier for subtler movement
                     beeLogo.style.transform = `translateY(${movement}px)`;
                     ticking = false;
                 });
