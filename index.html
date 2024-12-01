@@ -21,6 +21,39 @@
             opacity: 0.1;
             transform: rotate(30deg);
         }
+        /* Wood Texture Styles */
+        .wood-panel {
+            background-color: #916639;
+            background-image: 
+                linear-gradient(90deg, rgba(130, 91, 51, 0.25) 1px, transparent 1px),
+                linear-gradient(rgba(130, 91, 51, 0.25) 1px, transparent 1px);
+            background-size: 20px 20px;
+            border: 8px solid #654321;
+            box-shadow: 
+                inset 0 0 30px rgba(0,0,0,0.2),
+                0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .wood-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, 
+                    rgba(255,255,255,0.1) 0%,
+                    rgba(255,255,255,0) 20%,
+                    rgba(255,255,255,0.1) 40%,
+                    rgba(255,255,255,0) 60%,
+                    rgba(255,255,255,0.1) 80%,
+                    rgba(255,255,255,0) 100%
+                );
+            pointer-events: none;
+        }
+
         /* Additional Tailwind-like Utility Classes */
         .bg-yellow-100 { background-color: #fef3c7; }
         .bg-yellow-500 { background-color: #f59e0b; }
@@ -30,7 +63,7 @@
         .text-yellow-800 { color: #92400e; }
         .text-yellow-900 { color: #78350f; }
         .hover\:bg-yellow-600:hover { background-color: #d97706; }
-        .border-l-white { border-left-color: #ffffff; }
+        .text-wood { color: #f4debf; }
         
         /* Transform & Transition Classes */
         .transition-colors { transition-property: background-color, border-color, color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
@@ -38,23 +71,10 @@
         .hover\:scale-105:hover { transform: scale(1.05); }
         .transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
 
-        /* Shadow Classes */
-        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
-
-        /* Custom Button Styles */
-        .play-button {
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 15px 0 15px 25px;
-            border-color: transparent transparent transparent white;
-        }
-
-        /* Custom Chart Container */
+        /* Chart Container */
         .chart-container {
             background: #1a1a1a;
-            border-radius: 1rem;
+            border-radius: 0.5rem;
             overflow: hidden;
         }
 
@@ -85,13 +105,13 @@
             </div>
 
             <!-- Contract Address -->
-            <div class="bg-white rounded-lg p-4 shadow-lg max-w-2xl mx-auto">
+            <div class="wood-panel rounded-lg p-4 max-w-2xl mx-auto">
                 <div class="text-left">
-                    <div class="text-sm text-yellow-800 font-semibold mb-1">Solana Contract Address:</div>
-                    <div class="font-mono text-gray-600 flex justify-between items-center">
+                    <div class="text-sm text-wood font-semibold mb-1">Solana Contract Address:</div>
+                    <div class="font-mono text-wood flex justify-between items-center">
                         <span id="contract-address">0x000...000</span>
-                        <button onclick="copyAddress()" class="ml-4 p-2 hover:bg-yellow-100 rounded-full transition-colors">
-                            <svg id="copy-icon" class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button onclick="copyAddress()" class="ml-4 p-2 hover:bg-yellow-600/20 rounded-full transition-colors">
+                            <svg id="copy-icon" class="w-6 h-6 text-wood" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                             </svg>
                         </button>
@@ -101,8 +121,8 @@
         </div>
 
         <!-- Video Section -->
-        <div class="max-w-4xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-2xl bg-white p-8">
-            <h2 class="text-3xl font-bold text-yellow-800 mb-6 text-center">Watch the Buzz! 🎥</h2>
+        <div class="wood-panel max-w-4xl mx-auto mb-16 rounded-2xl overflow-hidden p-8">
+            <h2 class="text-3xl font-bold text-wood mb-6 text-center">Watch the Buzz! 🎥</h2>
             <div class="relative w-full rounded-xl overflow-hidden" style="padding-top: 56.25%;">
                 <video 
                     class="absolute top-0 left-0 w-full h-full object-cover"
@@ -118,8 +138,8 @@
 
         <!-- Chart Section -->
         <div class="max-w-6xl mx-auto mb-16">
-            <div class="bg-white rounded-2xl p-8 shadow-2xl">
-                <h2 class="text-3xl font-bold text-yellow-800 mb-6 text-center">Live Chart 📈</h2>
+            <div class="wood-panel rounded-2xl p-8">
+                <h2 class="text-3xl font-bold text-wood mb-6 text-center">Live Chart 📈</h2>
                 <div class="chart-container">
                     <iframe
                         src="https://dexscreener.com/solana/[your-pair-address]?embed=1&theme=dark"
