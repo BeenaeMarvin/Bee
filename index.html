@@ -99,7 +99,7 @@
 
     <div class="p-8">
         <!-- Logo in corner -->
-        <div class="fixed top-8 -left-20 z-50 parallax-bee" id="bee-logo">
+        <div class="absolute top-8 -left-20 z-50" id="bee-logo">
             <img 
                 src="https://raw.githubusercontent.com/BeenaeMarvin/Bee/main/1.png" 
                 alt="Bee Logo"
@@ -202,23 +202,7 @@
                 copyIcon.style.color = '';
             }, 2000);
         }
-
-        // Parallax effect for bee logo
-        const beeLogo = document.getElementById('bee-logo');
-        let lastScrollY = window.scrollY;
-        let ticking = false;
-
-        window.addEventListener('scroll', () => {
-            lastScrollY = window.scrollY;
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const movement = -lastScrollY * 0.1; // Negative value to move up, reduced multiplier for subtler movement
-                    beeLogo.style.transform = `translateY(${movement}px)`;
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
+    </script>
     </script>
 </body>
 </html>
