@@ -1,0 +1,88 @@
+import React, { useState } from 'react';
+import { Copy, Check } from 'lucide-react';
+
+const BeeCoinLanding = () => {
+  const [copied, setCopied] = useState(false);
+  const contractAddress = "0x000...000"; // Placeholder CA
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(contractAddress);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="min-h-screen bg-yellow-100 p-8">
+      {/* Hero Section */}
+      <div className="max-w-6xl mx-auto text-center mb-16">
+        <h1 className="text-6xl font-bold text-yellow-600 mb-4">
+          🐝 BEE COIN 🐝
+        </h1>
+        <p className="text-3xl font-bold text-yellow-800 mb-8">
+          The Retardest Bee in the World! 🍯
+        </p>
+        <div className="text-5xl font-bold text-yellow-900 animate-bounce mb-8">
+          999.9M Total Supply
+        </div>
+
+        {/* Contract Address */}
+        <div className="bg-white rounded-lg p-4 shadow-lg max-w-2xl mx-auto flex items-center justify-between">
+          <div className="text-left">
+            <div className="text-sm text-yellow-800 font-semibold mb-1">Solana Contract Address:</div>
+            <div className="font-mono text-gray-600">{contractAddress}</div>
+          </div>
+          <button 
+            onClick={handleCopy}
+            className="ml-4 p-2 hover:bg-yellow-100 rounded-full transition-colors"
+          >
+            {copied ? (
+              <Check className="w-6 h-6 text-green-500" />
+            ) : (
+              <Copy className="w-6 h-6 text-yellow-600" />
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Video Section */}
+      <div className="max-w-4xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-2xl bg-white p-8">
+        <h2 className="text-3xl font-bold text-yellow-800 mb-6 text-center">Watch the Buzz! 🎥</h2>
+        <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+          <img 
+            src="/api/placeholder/800/450"
+            alt="BEE Coin Video"
+            className="absolute top-0 left-0 w-full h-full object-cover rounded-xl"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center cursor-pointer hover:bg-yellow-600 transition-colors">
+              <div className="w-0 h-0 border-t-8 border-b-8 border-l-12 border-transparent border-l-white ml-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Chart Section */}
+      <div className="max-w-6xl mx-auto mb-16">
+        <div className="bg-white rounded-2xl p-8 shadow-2xl">
+          <h2 className="text-3xl font-bold text-yellow-800 mb-6 text-center">Live Chart 📈</h2>
+          <div className="w-full rounded-xl overflow-hidden">
+            <iframe
+              src="https://dexscreener.com/solana/[your-pair-address]?embed=1&theme=dark"
+              className="w-full h-[800px] border-0"
+              title="DEXscreener Chart"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Launch Button */}
+      <div className="text-center">
+        <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg transform hover:scale-105 transition-transform">
+          🚀 Launching on pump.fun 🚀
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default BeeCoinLanding;
