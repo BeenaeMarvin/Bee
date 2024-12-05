@@ -29,23 +29,38 @@ function copyAddress() {
 }
 
 // Countdown Timer
+let countdownInterval;
+
 function updateCountdown() {
-    const launchDate = new Date('December 24, 2024 00:00:00').getTime();
+    // Set target date to December 24, 2024
+    const targetDate = new Date('2024-12-24T00:00:00').getTime();
     
     function update() {
+        // Get current date and time
         const now = new Date().getTime();
-        const distance = launchDate - now;
-
+        
+        // Find the distance between now and the countdown date
+        const distance = targetDate - now;
+        
+        // Time calculations for days, hours, minutes and seconds
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById('days').textContent = days.toString().padStart(2, '0');
-        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-
+        // Add leading zeros
+        const displayDays = String(days).padStart(2, '0');
+        const displayHours = String(hours).padStart(2, '0');
+        const displayMinutes = String(minutes).padStart(2, '0');
+        const displaySeconds = String(seconds).padStart(2, '0');
+        
+        // Display the result
+        document.getElementById('days').textContent = displayDays;
+        document.getElementById('hours').textContent = displayHours;
+        document.getElementById('minutes').textContent = displayMinutes;
+        document.getElementById('seconds').textContent = displaySeconds;
+        
+        // If the countdown is finished, display all zeros
         if (distance < 0) {
             clearInterval(countdownInterval);
             document.getElementById('days').textContent = '00';
@@ -54,10 +69,11 @@ function updateCountdown() {
             document.getElementById('seconds').textContent = '00';
         }
     }
-
+    
+    // Update immediately and then every second
     update();
-    const countdownInterval = setInterval(update, 1000);
+    countdownInterval = setInterval(update, 1000);
 }
 
-// Start the countdown when the page loads
-updateCountdown();
+// Initialize countdown when the page loads
+document.addEventListener('DOMContentLoaded', updateCountdown);
