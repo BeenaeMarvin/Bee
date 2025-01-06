@@ -32,8 +32,8 @@ function copyAddress() {
 let countdownInterval;
 
 function updateCountdown() {
-    // Set target date to December 24, 2024
-    const targetDate = new Date('2024-12-24T00:00:00').getTime();
+    // Set target date to 
+    const targetDate = new Date('2025-01-08T00:00:00').getTime();
     
     function update() {
         // Get current date and time
