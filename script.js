@@ -33,7 +33,7 @@ let countdownInterval;
 
 function updateCountdown() {
     // Set target date to 
-    const targetDate = new Date('2025-01-08T00:00:00').getTime();
+    const targetDate = new Date('2025-01-15T16:00:00').getTime();
     
     function update() {
         // Get current date and time
